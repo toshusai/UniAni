@@ -4,42 +4,50 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
-[InitializeOnLoad]
 static class UniAniManager
 {
-    static UniAniManager()
+    [RuntimeInitializeOnLoadMethod]
+    static void Start()
     {
-        EditorApplication.update += Update;
+        GameObject gameObject = new GameObject();
+        UniAniUpdateCaller updateCaller = gameObject.AddComponent<UniAniUpdateCaller>();
+        updateCaller.SetUpate(Update);
     }
 
     static void Update()
     {
         int index = 0;
-        for (int i = 0; i < unimeList.Count; i++)
+        for (int i = 0; i < uniAniList.Count; i++)
         {
-            unimeList[index].Update();
-            if (unimeList[index].done)
+            uniAniList[index].Update();
+            if (uniAniList[index].done)
             {
-                unimeList.Remove(unimeList[index]);
+                uniAniList.Remove(uniAniList[index]);
                 i++;
             }
             index++;
         }
     }
 
-    static List<UniAni> unimeList = new List<UniAni>();
-
-    public static UniAni Move(this Transform transform, Vector3 endPosition, float time)
-    {
-        UniAni unime = new UniAni(unimeList, transform, endPosition, time, AnimationCurve.EaseInOut(0, 0, 1, 1));
-        unimeList.Add(unime);
-        return unime;
+    public static void Delay(Action action, float animeTime){
+        UniAni uniAni = new UniAni(uniAniList, animeTime, AnimationCurve.Linear(0, 0, 1, 1), AnimationType.ONCE);
+        uniAni.SetEndAction(action);
     }
 
-    public static UniAni Move(this Transform transform, Vector3 endPosition, float time, AnimationCurve curve)
+    static List<UniAni> uniAniList = new List<UniAni>();
+
+    public static UniAni DoPosition(this Transform transform, Vector3 endPosition, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
     {
-        UniAni unime = new UniAni(unimeList, transform, endPosition, time, curve);
-        unimeList.Add(unime);
-        return unime;
+        return new UniAniTransform(TransformType.POSITION, uniAniList, transform, endPosition, animeTime, curve, animationType);
+    }
+
+    public static UniAni DoScale(this Transform transform, Vector3 endScale, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
+        return new UniAniTransform(TransformType.SCALE, uniAniList, transform, endScale, animeTime, curve, animationType);
+    }
+
+    public static UniAni DoRotation(this Transform transform, Vector3 endEulerAngles, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
+        return new UniAniTransform(TransformType.ROTATION, uniAniList, transform, endEulerAngles, animeTime, curve, animationType);
     }
 }
