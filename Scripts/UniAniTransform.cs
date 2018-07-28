@@ -80,6 +80,9 @@ public class UniAniTransform : UniAni
 
     public override void Animation(float pos)
     {
+        if (transform == null) {
+            uniAniList.Remove(this);
+        }
         base.Animation(pos);
         Vector3 lerpVector = Vector3.Lerp(startVector, endVector, pos);
         switch (transformType)
