@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEditor;
 using System.Collections.Generic;
 
@@ -49,5 +50,10 @@ static class UniAniManager
     public static UniAni DoRotation(this Transform transform, Vector3 endEulerAngles, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
     {
         return new UniAniTransform(TransformType.ROTATION, uniAniList, transform, endEulerAngles, animeTime, curve, animationType);
+    }
+
+    public static UniAni DoColor(this Image image, Color endColor, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
+        return new UniAniImage(uniAniList, image, endColor, animeTime, curve, animationType);
     }
 }
