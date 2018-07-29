@@ -7,6 +7,7 @@ using UnityEngine;
 public enum TransformType
 {
     POSITION,
+    LOCAL_POSITION,
     SCALE,
     ROTATION
 }
@@ -23,19 +24,20 @@ public class UniAniTransform : UniAni
     {
         transformType = transformType_;
         transform = transform_;
+        endVector = endVector_;
         switch (transformType_)
         {
             case TransformType.POSITION:
                 startVector = transform.position;
-                endVector = endVector_;
+                break;
+            case TransformType.LOCAL_POSITION:
+                startVector = transform.localPosition;
                 break;
             case TransformType.SCALE:
                 startVector = transform.localScale;
-                endVector = endVector_;
                 break;
             case TransformType.ROTATION:
                 startVector = transform.rotation.eulerAngles;
-                endVector = endVector_;
                 break;
         }
     }
@@ -46,6 +48,9 @@ public class UniAniTransform : UniAni
         {
             case TransformType.POSITION:
                 transform.position = endVector;
+                break;
+            case TransformType.LOCAL_POSITION:
+                transform.localPosition = endVector;
                 break;
             case TransformType.SCALE:
                 transform.localScale = endVector;
@@ -63,6 +68,10 @@ public class UniAniTransform : UniAni
                     case TransformType.POSITION:
                         endVector = startVector;
                         startVector = transform.position;
+                        break;
+                    case TransformType.LOCAL_POSITION:
+                        endVector = startVector;
+                        startVector = transform.localPosition;
                         break;
                     case TransformType.SCALE:
                         endVector = startVector;
@@ -89,6 +98,9 @@ public class UniAniTransform : UniAni
         {
             case TransformType.POSITION:
                 transform.position = lerpVector;
+                break;
+            case TransformType.LOCAL_POSITION:
+                transform.localPosition = lerpVector;
                 break;
             case TransformType.SCALE:
                 transform.localScale = lerpVector;

@@ -42,6 +42,10 @@ static class UniAniManager
         return new UniAniTransform(TransformType.POSITION, uniAniList, transform, endPosition, animeTime, curve, animationType);
     }
 
+    public static UniAni DoLocalPosition(this Transform transform, Vector3 endPosition, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE) {
+        return new UniAniTransform(TransformType.LOCAL_POSITION, uniAniList, transform, endPosition, animeTime, curve, animationType);
+    }
+
     public static UniAni DoScale(this Transform transform, Vector3 endScale, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
     {
         return new UniAniTransform(TransformType.SCALE, uniAniList, transform, endScale, animeTime, curve, animationType);
