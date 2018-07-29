@@ -61,4 +61,9 @@ static class UniAniManager
     {
         return new UniAniImage(uniAniList, image, endColor, animeTime, curve, animationType);
     }
+
+    public static UniAni DoVolume(this AudioSource audioSource, float endVolume, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
+        return new UniAniAudioSource(uniAniList, audioSource, endVolume, animeTime, curve, animationType);
+    }
 }
