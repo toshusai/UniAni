@@ -9,9 +9,10 @@ public class UniAniUpdateCaller : MonoBehaviour
 
     public void SetUpate(Action action_)
     {
+        DontDestroyOnLoad(this.gameObject);
         action = action_;
     }
-    void Update()
+    private void Update()
     {
         action();
     }
