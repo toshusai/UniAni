@@ -42,7 +42,7 @@ public class UniAniTransform : UniAni
         }
     }
 
-    public override bool AnimationEnd()
+    protected override bool AnimationEnd()
     {
         switch (transformType)
         {
@@ -87,7 +87,7 @@ public class UniAniTransform : UniAni
         return true;
     }
 
-    public override void Animation(float pos)
+    protected override void Animation(float pos)
     {
         if (transform == null) {
             uniAniList.Remove(this);

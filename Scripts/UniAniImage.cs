@@ -15,12 +15,12 @@ public class UniAniImage : UniAni {
         endColor = endColor_;
     }
 
-    public override bool AnimationEnd() {
+    protected override bool AnimationEnd() {
         image.color = endColor;
         return true;
     }
 
-    public override void Animation(float pos) {
+    protected override void Animation(float pos) {
         base.Animation(pos);
         Color leapColor = Color.Lerp(startColor, endColor, pos);
         image.color = leapColor;
