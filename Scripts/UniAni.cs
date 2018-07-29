@@ -44,12 +44,12 @@ public class UniAni
         this.endAction = endAction_;
     }
 
-    public virtual bool AnimationEnd()
+    protected virtual bool AnimationEnd()
     {
         return true;
     }
 
-    public virtual void Animation(float pos)
+    protected virtual void Animation(float pos)
     {
 
     }
