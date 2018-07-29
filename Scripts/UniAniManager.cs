@@ -12,6 +12,7 @@ static class UniAniManager
     {
         GameObject gameObject = new GameObject();
         UniAniUpdateCaller updateCaller = gameObject.AddComponent<UniAniUpdateCaller>();
+        updateCaller.name = "UniAniUpdateCaller";
         updateCaller.SetUpate(Update);
     }
 
