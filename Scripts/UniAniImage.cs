@@ -21,6 +21,10 @@ public class UniAniImage : UniAni {
     }
 
     protected override void Animation(float pos) {
+        if(image == null){
+            done = true;
+            return;
+        }
         base.Animation(pos);
         Color leapColor = Color.Lerp(startColor, endColor, pos);
         image.color = leapColor;

@@ -21,6 +21,10 @@ public class UniAniAudioSource : UniAni {
     }
 
     protected override void Animation(float pos) {
+        if(audioSource == null){
+            done = true;
+            return;
+        }
         base.Animation(pos);
         float leapVolume = startVolume + (endVolume - startVolume) * pos;
         audioSource.volume = leapVolume;
