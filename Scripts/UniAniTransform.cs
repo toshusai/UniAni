@@ -90,7 +90,8 @@ public class UniAniTransform : UniAni
     protected override void Animation(float pos)
     {
         if (transform == null) {
-            uniAniList.Remove(this);
+            done = true;
+            return;
         }
         base.Animation(pos);
         Vector3 lerpVector = Vector3.Lerp(startVector, endVector, pos);
