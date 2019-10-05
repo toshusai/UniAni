@@ -17,6 +17,13 @@ public class UniAniAction : UniAni
     protected override void Animation(float pos)
     {
         base.Animation(pos);
-        action(pos);
+        try
+        {
+            action(pos);
+        }
+        catch (System.Exception)
+        {
+            done = true;
+        }
     }
 }
