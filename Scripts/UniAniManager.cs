@@ -31,9 +31,15 @@ static class UniAniManager
         }
     }
 
-    public static void Delay(Action action, float animeTime){
+    public static void Delay(Action action, float animeTime)
+    {
         UniAni uniAni = new UniAni(uniAniList, animeTime, AnimationCurve.Linear(0, 0, 1, 1), AnimationType.ONCE);
         uniAni.SetEndAction(action);
+    }
+
+    public static void UniAniActions(Action<float> action, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
+        new UniAniAction(uniAniList, action, animeTime, curve, animationType);
     }
 
     static List<UniAni> uniAniList = new List<UniAni>();
@@ -43,7 +49,8 @@ static class UniAniManager
         return new UniAniTransform(TransformType.POSITION, uniAniList, transform, endPosition, animeTime, curve, animationType);
     }
 
-    public static UniAni DoLocalPosition(this Transform transform, Vector3 endPosition, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE) {
+    public static UniAni DoLocalPosition(this Transform transform, Vector3 endPosition, float animeTime, AnimationCurve curve = null, AnimationType animationType = AnimationType.ONCE)
+    {
         return new UniAniTransform(TransformType.LOCAL_POSITION, uniAniList, transform, endPosition, animeTime, curve, animationType);
     }
 
