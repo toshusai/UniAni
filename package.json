@@ -1,0 +1,8 @@
+{
+    "name": "com.toshusai.uniani",
+    "displayName": "UniAni",
+    "version": "1.0.0",
+    "unity": "2018.1",
+    "description": "Code base animation library for Unity",
+    "dependencies": {}
+}
