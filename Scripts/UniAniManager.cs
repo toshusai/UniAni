@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using System.Collections.Generic;
 
-static class UniAniManager
+public static class UniAniManager
 {
     [RuntimeInitializeOnLoadMethod]
     static void Start()
